@@ -1,8 +1,18 @@
+import styles from "./Message.module.scss"
+
 const Message = (props) => {
     return (
-        <div>
-            <h1>Message from props: {props.message}</h1>
-        </div>
+        <>
+            {props.messageList.map((item) => {
+                return (
+                    <ul className={styles.message_ul}
+                        style={item.name === 'Bot' ? {alignSelf: 'flex-end'} : {alignSelf: "flex-start"}}>
+                        <li style={{fontWeight:"600", textTransform:"capitalize"}}>{item.name}&nbsp;:</li>
+                        <li>{item.text}</li>
+                    </ul>
+                )
+            })}
+        </>
     )
 
 }
