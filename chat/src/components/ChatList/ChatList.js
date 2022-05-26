@@ -4,7 +4,7 @@ import styles from "./ChatList.module.scss"
 export const ChatList = () => {
     const [chatList, setChatList] = useState([
         {id: 1, title: 'Chat 1', message: 'message'},
-        {id: 1, title: 'Chat 2', message: 'message'}
+        {id: 2, title: 'Chat 2', message: 'message'}
     ])
     return (
         <div className={styles.chat_list}>

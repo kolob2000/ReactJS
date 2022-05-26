@@ -13,12 +13,11 @@ export const MessageList = ({messageList, setMessageList}) => {
     useEffect(() => {
         let timerId = null;
         if (MessageListRef.current) {
-            console.log(MessageListRef.current.scrollHeight)
             MessageListRef.current.scrollTo(0, MessageListRef.current.scrollHeight);
         }
         if (messageList[messageList.length - 1]?.['user'] === 'User') {
             timerId = setTimeout(() => {
-                setMessageList(prevState => [...prevState, BOT_MESSAGE])
+                setMessageList(prevState => [...prevState, {...BOT_MESSAGE, id: Date.now()}])
             }, 2000)
         }
         return () => clearInterval(timerId);
@@ -34,8 +33,7 @@ export const MessageList = ({messageList, setMessageList}) => {
     }
     const handleSendMessage = (e) => {
         if (userMessage.text !== '') {
-            console.log(userMessage.text)
-            setMessageList(prevState => [...prevState, userMessage])
+            setMessageList(prevState => [...prevState, {...userMessage, id: Date.now()}])
             setUserMessage(prevState => {
                 return {
                     ...prevState,
@@ -55,8 +53,9 @@ export const MessageList = ({messageList, setMessageList}) => {
         <div ref={MessageListRef} className={styles.message_list}>
             {messageList.map((item, index) => {
                 return (
-                    <ul className={styles.display_message} style={item.user === 'Bot'? {float:"right"}: {float: "left"}}>
-                        <li>{item.user}</li>
+                    <ul key={item.id} className={styles.display_message}
+                        style={item.user === 'Bot' ? {float: "right"} : {float: "left"}}>
+                        <li className={styles.user_name}>{item.user}</li>
                         <li>{item.text}</li>
                     </ul>
                 )
