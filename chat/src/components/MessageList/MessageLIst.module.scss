@@ -1,0 +1,37 @@
+@import '../../variables';
+
+.message_list {
+ overflow-y: auto;
+  min-width: 64%;
+  width: 100%;
+  padding: 50px 0 25px  ;
+  word-break: break-word;
+}
+
+.send_message {
+  display: flex;
+  width: 67%;
+  padding: 0 25px;
+  position: fixed;
+  bottom: 0;
+  @media screen and (max-width: 512px) {
+    width: 92%;
+  }
+}
+
+.message_input {
+
+  flex-grow: 1;
+}
+
+.display_message {
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 20px;
+  background: #fff4e5;
+  width: 60%;
+  font-style: oblique;
+}
+.user_name{
+  font-weight: 700;
+}
